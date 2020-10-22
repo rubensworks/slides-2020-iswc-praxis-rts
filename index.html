@@ -34,47 +34,72 @@
 
     <section id="title" class="slide title" inlist="" rel="schema:hasPart" resource="#title">
       <h2 property="schema:name">RDF Test Suite</h2>
+	  <h3>Improving Developer Experience<br />for Building Specification-Compliant Libraries</h3>
       <ul class="author inline">
           <li class="current"><a href="https://www.rubensworks.net/">Ruben Taelman</a></li>
       </ul>
       <p class="affiliation"><a href="http://idlab.technology/">Ghent University – imec – IDLab, Belgium</a></p>
     </section>
 
-    <section id="start" class="slide" style="background-image: url('img/TODO.jpg')" inlist="" rel="schema:hasPart" resource="#start">
-        <h2 property="schema:name" class="big" style="margin-top: 20px; color: white; text-shadow: 2px 2px black">INTRO</h2>
-        <ul style="color: white; text-shadow: 2px 2px black; font-size: 1.3em">
-            <li>TODO</li>
+    <section id="start" class="slide" inlist="" rel="schema:hasPart" resource="#start">
+        <h2 property="schema:name" class="big" style="margin-top: 20px">RDF specifications provide test suites</h2>
+        <ul>
+			<li style="font-style: italic">SPARQL, JSON-LD, Turtle, RDFa, ...</li>
+            <li>
+        	    <h3>To prove specification compliance</h3>
+		        <span class="indent">Using test reports in the EARL vocabulary</span>
+			</li>
+            <li>
+        	    <h3>Test suites are declarative</h3>
+				<pre style="font-size: 50%">
+  {
+    "@context": ["context.jsonld", {"@base": "toRdf-manifest"}],
+    "@id": "",
+    "@type": "mf:Manifest",
+    "name": "Transform JSON-LD to RDF",
+    "sequence": [{
+      "@id": "#t0001",
+      "@type": ["jld:PositiveEvaluationTest", "jld:ToRDFTest"],
+      "name": "Plain literal with URIs",
+      "purpose": "Tests generation of a triple using full URIs and a plain literal.",
+      "input": "toRdf/0001-in.jsonld",
+      "expect": "toRdf/0001-out.nq" },
+      ...
+    ]
+  }
+				</pre>
+			</li>
         </ul>
     </section>
 	
-    <section id="index" class="slide index" inlist="" rel="schema:hasPart" resource="#index">
-      <ul>
-        <li><a href="#index-a">TODO</a></li>
-		<li><a href="#index-b">TODO</a></li>
-      </ul>
-    </section>
-    
-    <section id="index-a" class="slide index" inlist="" rel="schema:hasPart" resource="#index-a">
-      <ul>
-        <li class="current"><a href="#index-a">TODO</a></li>
-		<li><a href="#index-b">TODO</a></li>
-      </ul>
+    <section id="problem" class="slide" inlist="" rel="schema:hasPart" resource="#problem">
+      <h2 property="schema:name">Declarative test suites cause large overhead for developers</h2>
+      <ol>
+          <li><strong>Download</strong> the test manifest</li>
+          <li><strong>Parse</strong> the manifest based on a certain RDF syntax</li>
+		  <li><strong>Follow links</strong> to other parts of the manifest if applicable</li>
+		  <li><strong>Interpret</strong> the test definitions as executable logic</li>
+		  <li><strong>Execute</strong> all tests</li>
+		  <li><strong>Report</strong> the test results</li>
+      </ol>
     </section>
 	
-    <section id="some-slide" class="slide" inlist="" rel="schema:hasPart" resource="#some-slide">
-      <h2 property="schema:name">TODO: A regular slide</h2>
-      <ul>
-          <li>
-          	  <h3>A</h3>
-			  <span class="indent">TODO: Description</span>
-          </li>
-          <li>B</li>
-          <li>C</li>
-      </ul>
-    </section>
-	
-    <section id="conclusion" class="slide" inlist="" rel="schema:hasPart" resource="#conclusion">
-      <h2 property="schema:name" class="big">TODO: Conclusion</h2>
+    <section id="solution" class="slide" inlist="" rel="schema:hasPart" resource="#solution">
+        <h2 property="schema:name" class="big" style="margin-top: 20px">RDF Test Suite alleviates this burden</h2>
+        <ul>
+            <li>
+        	    <h3>Takes care of all steps to execute test suites</h3>
+		        <span class="indent">Developer can focus on actual implementation of specification</span>
+			</li>
+            <li>
+        	    <h3>Inspired by popular testing frameworks</h3>
+		        <span class="indent">Fast repeated execution, visually appealing result formatting, test filtering, ...</span>
+			</li>
+            <li>
+        	    <h3>Open-source, for JavaScript</h3>
+		        <span class="indent"><a href="https://github.com/rubensworks/rdf-test-suite.js">https://github.com/rubensworks/rdf-test-suite.js</a></span>
+			</li>
+        </ul>
     </section>
 
     <footer>
